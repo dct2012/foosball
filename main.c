@@ -20,11 +20,18 @@ typedef struct {
 
 field f[10][3];
 yards yd = {.right = true, .ascending = true, .position = 35};
+int score_home = 0;
+int score_away = 0;
+int down = 1;
+int yards_to_go = 10;
 
 void print_scoreboard()
 {
     //print own side
-    printf("field position: %d\n", yd.position);
+    printf("home\tfield position\taway\n");
+    printf("%d\t%d\t\t%d\n", score_home, yd.position, score_away);
+    printf("down\tyards to go\ttime\n");
+    printf("%d\t%d\n", down, yards_to_go);
 }
 
 void print_field()
@@ -97,6 +104,14 @@ void move_athlete(athlete *a, char c)
                 yd.position++;
             else
                 yd.position--;
+
+            if(yd.position == 0)
+            {
+                score_home += 7; //probably going to give the option 1 pt or 2 pt
+                yd.position = 20; //really there should be a kickoff
+            }
+
+            yards_to_go--;
 
             break;
         case 'w':
