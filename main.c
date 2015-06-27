@@ -2,8 +2,9 @@
 #include <stdbool.h>
 
 typedef struct {
-    // 0 = qb, 1 = receiver, 2 = defense
-    bool position[3];
+    //  bright           dim/ blinking  dim         bright/blinking
+    // 0 = qb or runner, 1 = receiver, 2 = defense, 3 = ball
+    bool position[4];
     int x, y;
 } athlete;
 
@@ -48,8 +49,16 @@ void print_field()
 
         for(int x = 0; x < 10; x++)
         {
-            if (f[x][y].player && f[x][y].player->position[0])
-                printf("X");
+            if (f[x][y].player){
+                if(f[x][y].player->position[0])
+                    printf("X");
+                else if(f[x][y].player->position[1])
+                    printf("H");
+                else if(f[x][y].player->position[1])
+                    printf("O");
+                else
+                    printf("#");
+            }
             else
                 printf(" ");
 
@@ -124,9 +133,103 @@ void move_athlete(athlete *a, char c)
     }
 }
 
+void add_player_to_field(athlete *a)
+{
+    f[a->x][a->y].player = a;
+}
+
+void remove_player_from_field(athlete *a)
+{
+    f[a->x][a->y].player = NULL;
+}
+
+void kickoff()
+{
+    //when the kick button is pressed, the three dots in 
+    //the triangle formation move towards the ball, when
+    //they reach the ball they disappear and the ball is
+    //kicked. we follow the ball until it stops (direction
+    //needs to change) and then they can run. defensive players
+    //seem to appear by couples in random spots, I think one per
+    //move.
+    //the ball is bright red and blinking. the kicker is dim and blinking
+    //the two others are bright red
+
+
+    yd.position = 35;
+
+    if(yd.right)
+    {
+        //we need dots at [0][0], [1][1], [0][2], [5][1]
+        //X
+        // X   X
+        //X
+
+
+        //create players and add them to the field
+        athlete s1 = {.position[0] = true, .x = 0, .y = 0};
+        add_player_to_field(&s1);
+        
+        athlete s2 = {.position[0] = true, .x = 0, .y = 2};
+        add_player_to_field(&s2);
+        
+        athlete kicker = {.position[1] = true, .x = 1, .y = 1};
+        add_player_to_field(&kicker);
+
+        athlete ball = {.position[3] = true, .x = 5, .y = 1};
+        add_player_to_field(&ball);
+
+        print_field();
+
+
+        //wait for kick button
+        char kick = ' ';
+        while(kick != 'a')
+            scanf("%c",&kick);
+
+        
+        //animate kick
+        // first we'll need to decide how for it goes
+        // then move line to ball
+        //  animate
+        // ball turns into qb
+        // ball moves for decided distance
+        for(int i = 0; i < 3; i++)
+        {
+            remove_player_from_field(&s1);
+            s1.x++;
+            add_player_to_field(&s1);
+            
+            remove_player_from_field(&s2);
+            s2.x++;
+            add_player_to_field(&s2);
+
+            remove_player_from_field(&kicker);
+            kicker.x++;
+            add_player_to_field(&kicker);
+
+            print_field();
+        }
+        
+
+
+
+        //change directions
+        //run
+        //generate defense players
+        //down or td (exit)
+        
+        
+        
+    }
+
+}
+
 int main(int argc, char *argv[])
 {
-    athlete a = {.position[0] = true, .x = 0, .y = 1};
+    kickoff();
+
+    /*athlete a = {.position[0] = true, .x = 0, .y = 1};
     f[a.x][a.y].player = &a;
     
 
@@ -137,5 +240,5 @@ int main(int argc, char *argv[])
  
         scanf(" %c", &input);
         move_athlete(&a, input);
-    }
+    }*/
 }
