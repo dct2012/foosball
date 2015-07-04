@@ -9,7 +9,7 @@ CFLAGS = -w -std=c++11
 LFLAGS = -lGLEW -lglfw -lGL -lX11 -lpthread -lXrandr -lXi
 
 SRCS = shader.cpp
-OBJS = main.cpp shader.o field.o
+OBJS = main.cpp shader.o field.o scoreboard.o
 
 #OBJ_NAME specifies the name of our exectuable
 OBJ_NAME = hello
@@ -24,3 +24,6 @@ shader.o : shader.h
 
 field.o : field.h
 	$(CC) $(CFLAGS) $(LFLAGS) -c field.cpp
+
+scoreboard.o : scoreboard.h
+	$(CC) $(CFLAGS) $(LFLAGS) -c scoreboard.cpp

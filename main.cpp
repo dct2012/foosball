@@ -10,6 +10,7 @@
 // Other includes
 #include "shader.h"
 #include "field.h"
+#include "scoreboard.h"
 
 
 // Function prototypes
@@ -48,33 +49,7 @@ int main()
     Shader ourShader("vertexshader.c", "fragmentshader.c");
 
     Field ourField;
-    
-    GLfloat scoreboard_vertices[] = {
-         0.57f,  0.9f, 0.0f,  // Top Right
-         0.57f, 0.4f, 0.0f,  // Bottom Right
-        -0.57f, 0.4f, 0.0f,  // Bottom Left
-        -0.57f,  0.9f, 0.0f  // Top Left
-    };
-    GLuint scoreboard_indices[] = {  // Note that we start from 0!
-        0, 1, 3,  // First Triangle
-        1, 2, 3   // Second Triangle
-    };
-
-    GLuint VBO, VAO, EBO;
-    glGenVertexArrays(1, &VAO);
-    glGenBuffers(1, &VBO);
-    glGenBuffers(1, &EBO);
-    
-    //setup scoreboard
-    glBindVertexArray(VAO);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(scoreboard_vertices), scoreboard_vertices, GL_STATIC_DRAW);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(scoreboard_indices), scoreboard_indices, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
-    glEnableVertexAttribArray(0);
-    glBindVertexArray(0);
-
+    Scoreboard ourScoreboard;
 
     // Game loop
     while (!glfwWindowShouldClose(window))
@@ -91,18 +66,18 @@ int main()
 
         ourField.Draw();
 
-        glBindVertexArray(VAO);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        ourScoreboard.Draw();
         
         glBindVertexArray(0);
 
         // Swap the screen buffers
         glfwSwapBuffers(window);
     }
+    // TODO: add these to destructors? 
     // Properly de-allocate all resources once they've outlived their purpose
-    glDeleteVertexArrays(1, &VAO);
-    glDeleteBuffers(1, &VBO);
-    glDeleteBuffers(1, &EBO);
+    //glDeleteVertexArrays(1, &VAO);
+    //glDeleteBuffers(1, &VBO);
+    //glDeleteBuffers(1, &EBO);
     // Terminate GLFW, clearing any resources allocated by GLFW.
     glfwTerminate();
     return 0;
