@@ -22,3 +22,8 @@ void Field::Draw()
     glBindVertexArray(VAO);
     glDrawElements(GL_TRIANGLES, 90, GL_UNSIGNED_INT, 0);
 }
+
+GLfloat *Field::getFieldPosition(int x, int y)
+{
+    return position_vertices[x][y];
+}

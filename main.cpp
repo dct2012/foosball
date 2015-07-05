@@ -11,6 +11,7 @@
 #include "shader.h"
 #include "field.h"
 #include "scoreboard.h"
+#include "athlete.h"
 
 
 // Function prototypes
@@ -50,6 +51,7 @@ int main()
 
     Field ourField;
     Scoreboard ourScoreboard;
+    Athlete ourAthlete(Athlete::POSITION::QB, 0, 0);
 
     // Game loop
     while (!glfwWindowShouldClose(window))
@@ -74,7 +76,7 @@ int main()
         glfwSwapBuffers(window);
     }
     // TODO: add these to destructors? 
-    // Properly de-allocate all resources once they've outlived their purpose
+    //Properly de-allocate all resources once they've outlived their purpose
     //glDeleteVertexArrays(1, &VAO);
     //glDeleteBuffers(1, &VBO);
     //glDeleteBuffers(1, &EBO);
