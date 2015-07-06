@@ -163,24 +163,24 @@ class Field
         GLfloat position_vertices[1][3][12] = { {
             //start from [0][0] and work to [9][3]
             {//[0][0]
-            -((float)1/7)*4 - .1*((float)HEIGHT/WIDTH)/2,  0.2f, 0.0f,  // top right
-            -((float)1/7)*4 - .1*((float)HEIGHT/WIDTH)/2, -0.1f, 0.0f,  // Bottom right
-            -((float)1/7)*5 + .1*((float)HEIGHT/WIDTH)/2, -0.1f, 0.0f,  // Bottom Left
-            -((float)1/7)*5 + .1*((float)HEIGHT/WIDTH)/2,  0.2f, 0.0f,  // Top Left
+            -((float)1/7)*4 - .1/2,  0.2f, 0.0f,  // top right
+            -((float)1/7)*4 - .1/2, -0.1f, 0.0f,  // Bottom right
+            -((float)1/7)*5 + .1/2, -0.1f, 0.0f,  // Bottom Left
+            -((float)1/7)*5 + .1/2,  0.2f, 0.0f,  // Top Left
             },
             
             {//[0][0]
-            -((float)1/7)*4 - .1*((float)HEIGHT/WIDTH)/2,  0.2f, 0.0f,  // top right
-            -((float)1/7)*4 - .1*((float)HEIGHT/WIDTH)/2, -0.1f, 0.0f,  // Bottom right
-            -((float)1/7)*5 + .1*((float)HEIGHT/WIDTH)/2, -0.1f, 0.0f,  // Bottom Left
-            -((float)1/7)*5 + .1*((float)HEIGHT/WIDTH)/2,  0.2f, 0.0f,  // Top Left
+            -((float)1/7)*4 - .1/2,  0.2f, 0.0f,  // top right
+            -((float)1/7)*4 - .1/2, -0.1f, 0.0f,  // Bottom right
+            -((float)1/7)*5 + .1/2, -0.1f, 0.0f,  // Bottom Left
+            -((float)1/7)*5 + .1/2,  0.2f, 0.0f,  // Top Left
             },
             
             {//[0][0]
-            -((float)1/7)*4 - .1*((float)HEIGHT/WIDTH)/2,  0.2f, 0.0f,  // top right
-            -((float)1/7)*4 - .1*((float)HEIGHT/WIDTH)/2, -0.1f, 0.0f,  // Bottom right
-            -((float)1/7)*5 + .1*((float)HEIGHT/WIDTH)/2, -0.1f, 0.0f,  // Bottom Left
-            -((float)1/7)*5 + .1*((float)HEIGHT/WIDTH)/2,  0.2f, 0.0f,  // Top Left
+            -((float)1/7)*4 - .1/2,  0.2f, 0.0f,  // top right
+            -((float)1/7)*4 - .1/2, -0.1f, 0.0f,  // Bottom right
+            -((float)1/7)*5 + .1/2, -0.1f, 0.0f,  // Bottom Left
+            -((float)1/7)*5 + .1/2,  0.2f, 0.0f,  // Top Left
             }
 
         } };

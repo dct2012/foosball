@@ -1,6 +1,10 @@
-Athlete::Athlete(Athlete::POSITION p, int x, int y)
+#include "athlete.h"
+
+#include <iostream>
+
+Athlete::Athlete(/*Athlete::POSITION p,*/ int x, int y)
 {
-    setPosition(p);
+    //setPosition(p);
     setX(x);
     setY(y);
 
@@ -29,7 +33,7 @@ void Athlete::setX(int x)
 {
     if(x >= 0 && x <= 9)
     {
-        this.x = x;
+        this->x = x;
         //update opengl coordinates
     }
 }
@@ -38,22 +42,25 @@ void Athlete::setY(int y)
 {
     if(y >= 0 && y <= 2)
     {
-        this.y = y;
+        this->y = y;
         //we should also update it's opengl coordinates
     }
 }
 
-void Athlete::setPostion(Athlete::POSITION p)
+/*void Athlete::setPostion(Athlete::POSITION p)
 {
     position = p;
-}
+}*/
 
 void Athlete::setVertices(GLfloat *v)
 {
-    //setup scoreboard
+
+    std::cout << "sizeof(float) = " << sizeof(float)*12 << std::endl;
+    std::cout << "testing field position. " << v[4] << std::endl;
+
     glBindVertexArray(VAO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(v), v, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, 48, v, GL_STATIC_DRAW);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);

@@ -51,7 +51,11 @@ int main()
 
     Field ourField;
     Scoreboard ourScoreboard;
-    Athlete ourAthlete(Athlete::POSITION::QB, 0, 0);
+    
+    Athlete ourAthlete(0, 0);
+    ourAthlete.setVertices(ourField.getFieldPosition(ourAthlete.getX(), ourAthlete.getY()));
+
+    GLfloat *v = ourField.getFieldPosition(ourAthlete.getX(), ourAthlete.getY());
 
     // Game loop
     while (!glfwWindowShouldClose(window))
@@ -69,6 +73,8 @@ int main()
         ourField.Draw();
 
         ourScoreboard.Draw();
+
+        ourAthlete.Draw();
         
         glBindVertexArray(0);
 

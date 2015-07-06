@@ -1,12 +1,15 @@
 #ifndef athlete_H
 #define athlete_H
 
+#define GLEW_STATIC
+#include <GL/glew.h>
+
 class Athlete
 {
     public: 
         enum POSITION {QB, RECIEVER, DEFENSE, BALL};
 
-        Athlete(POSITION p, int x, int y);
+        Athlete(/*POSITION p,*/ int x, int y);
 
         int getX();
         int getY();
@@ -14,7 +17,7 @@ class Athlete
         
         void setX(int x);
         void setY(int y);
-        void setPosition(POSITION p);
+        //void setPosition(POSITION p);
         void setVertices(GLfloat *v);
 
         void Draw();
